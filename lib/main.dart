@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => TimerData.empty()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: true,
         title: 'PracLog',
         theme: ThemeData(
           primarySwatch: Colors.blue,
