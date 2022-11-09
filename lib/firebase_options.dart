@@ -50,21 +50,20 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBntk1jBHpa0ir2gDcKwKGBYiGB3eARoAQ',
-    appId: '1:60305170884:android:b58f27d59818c57dff0491',
-    messagingSenderId: '60305170884',
-    projectId: 'praclog-b31bd',
-    storageBucket: 'praclog-b31bd.appspot.com',
+    apiKey: 'AIzaSyCl7EiOWlSj1cy8E_LX6OQ2sdA_lLpMfao',
+    appId: '1:699614750464:android:df66f5c8d988ec5e1fb5e5',
+    messagingSenderId: '699614750464',
+    projectId: 'praclog-6f18f',
+    storageBucket: 'praclog-6f18f.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA200aIl6Bu1v3C2TBnuqJy58CaSN3n2OA',
-    appId: '1:60305170884:ios:408d3a99bb1dd0c6ff0491',
-    messagingSenderId: '60305170884',
-    projectId: 'praclog-b31bd',
-    storageBucket: 'praclog-b31bd.appspot.com',
-    androidClientId: '60305170884-18v1sub9urbgj772rj0h623qp71aqab6.apps.googleusercontent.com',
-    iosClientId: '60305170884-ohq1v3lb9jdc18hl8aj8n0fakotu9l7h.apps.googleusercontent.com',
-    iosBundleId: 'com.psycformusos.praclog.dev',
+    apiKey: 'AIzaSyDGCo4nRlmfWgNSS9LeK-6rTgyl7vj5eos',
+    appId: '1:699614750464:ios:c1fe0471bd1d81f51fb5e5',
+    messagingSenderId: '699614750464',
+    projectId: 'praclog-6f18f',
+    storageBucket: 'praclog-6f18f.appspot.com',
+    iosClientId: '699614750464-jd85iaulb8v2vug9ir4hkpndttcdudd7.apps.googleusercontent.com',
+    iosBundleId: 'com.psycformusos.praclog',
   );
 }

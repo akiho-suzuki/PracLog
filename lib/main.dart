@@ -23,7 +23,7 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
-      name: 'dev',
+      name: 'prod',
     );
     // Pass all uncaught errors from the framework to Crashlytics.
     FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;

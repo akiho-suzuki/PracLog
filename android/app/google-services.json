@@ -1,85 +1,34 @@
 {
   "project_info": {
-    "project_number": "60305170884",
-    "project_id": "praclog-b31bd",
-    "storage_bucket": "praclog-b31bd.appspot.com"
+    "project_number": "699614750464",
+    "project_id": "praclog-6f18f",
+    "storage_bucket": "praclog-6f18f.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:60305170884:android:3cac8093fb4ab520ff0491",
+        "mobilesdk_app_id": "1:699614750464:android:df66f5c8d988ec5e1fb5e5",
         "android_client_info": {
           "package_name": "com.psycformusos.praclog"
         }
       },
       "oauth_client": [
         {
-          "client_id": "60305170884-18v1sub9urbgj772rj0h623qp71aqab6.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.psycformusos.praclog",
-            "certificate_hash": "b4911a5c0b8a0c06ae49e8aa53844ea47fabedbd"
-          }
-        },
-        {
-          "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+          "client_id": "699614750464-0ire9v02s0emef4okcornsfqvmkccedk.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBntk1jBHpa0ir2gDcKwKGBYiGB3eARoAQ"
+          "current_key": "AIzaSyCl7EiOWlSj1cy8E_LX6OQ2sdA_lLpMfao"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+              "client_id": "699614750464-0ire9v02s0emef4okcornsfqvmkccedk.apps.googleusercontent.com",
               "client_type": 3
-            },
-            {
-              "client_id": "60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.psycformusos.praclog"
-              }
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:60305170884:android:b58f27d59818c57dff0491",
-        "android_client_info": {
-          "package_name": "com.psycformusos.praclog.dev"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyBntk1jBHpa0ir2gDcKwKGBYiGB3eARoAQ"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
-              "client_type": 3
-            },
-            {
-              "client_id": "60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.psycformusos.praclog"
-              }
             }
           ]
         }
