@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "60305170884",
+    "project_id": "praclog-b31bd",
+    "storage_bucket": "praclog-b31bd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60305170884:android:3cac8093fb4ab520ff0491",
+        "android_client_info": {
+          "package_name": "com.psycformusos.praclog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60305170884-18v1sub9urbgj772rj0h623qp71aqab6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.psycformusos.praclog",
+            "certificate_hash": "b4911a5c0b8a0c06ae49e8aa53844ea47fabedbd"
+          }
+        },
+        {
+          "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBntk1jBHpa0ir2gDcKwKGBYiGB3eARoAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.psycformusos.praclog"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:60305170884:android:b58f27d59818c57dff0491",
+        "android_client_info": {
+          "package_name": "com.psycformusos.praclog.dev"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBntk1jBHpa0ir2gDcKwKGBYiGB3eARoAQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "60305170884-526uicsllsc62jo99j8tvtc2mj8t2f3o.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.psycformusos.praclog"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
