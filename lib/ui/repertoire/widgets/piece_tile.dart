@@ -33,7 +33,7 @@ class PieceTile extends StatelessWidget {
   PopupMenuButton _buildPopupMenu(BuildContext context) {
     AuthManager authManager = context.read<AuthManager>();
     return PopupMenuButton<PieceTileActions>(
-      onSelected: (PieceTileActions selectedOption) async {
+      onSelected: (PieceTileActions selectedOption) {
         if (selectedOption == PieceTileActions.delete) {
           // Deletes piece
           Piece.deletePiece(

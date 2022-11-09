@@ -54,7 +54,7 @@ class _PieceInfoScreenState extends State<PieceInfoScreen> {
   }
 
   void onPressDelete(AuthManager authManager) async {
-    await Piece.deletePiece(
+    bool response = await Piece.deletePiece(
       context: context,
       piece: widget.piece,
       repertoireDatabase: RepertoireDatabase(
@@ -63,7 +63,7 @@ class _PieceInfoScreenState extends State<PieceInfoScreen> {
       weekDataDatabase: WeekDataDatabase(
           weekDataCollection: authManager.userWeekDataCollection),
     );
-    if (mounted) {
+    if (response && mounted) {
       Navigator.pop(context);
     }
   }

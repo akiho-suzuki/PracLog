@@ -67,7 +67,7 @@ class Piece {
     await logDatabase.updatePieceInfo(piece);
   }
 
-  static Future deletePiece({
+  static Future<bool> deletePiece({
     required BuildContext context,
     required Piece piece,
     required RepertoireDatabase repertoireDatabase,
@@ -79,13 +79,24 @@ class Piece {
         title: 'Delete piece?',
         confirmButtonText: 'Delete');
     if (response == true) {
-      // Delete piece
-      await repertoireDatabase.deletePiece(piece);
-      // TODO batch so that logs and weekDatabase are both definitely updated
-      // Delete all logs for the piece
-      List<Log> logs = await logDatabase.deleteLogsForPiece(piece);
-      // Update WeekData
-      await weekDataDatabase.updateForMultipleLogDelete(logs);
+      _delete(piece, repertoireDatabase, logDatabase, weekDataDatabase);
+      return true;
+    } else {
+      return false;
     }
+  }
+
+  // This is separated out to allow for offline access
+  // There needs to be an `await` for `showConfirmPopup`
+  // but can't put `await` in front of the other async functions if it is to work offline
+  static Future _delete(Piece piece, RepertoireDatabase repertoireDatabase,
+      LogDatabase logDatabase, WeekDataDatabase weekDataDatabase) async {
+    // Delete piece
+    await repertoireDatabase.deletePiece(piece);
+    // TODO batch so that logs and weekDatabase are both definitely updated
+    // Delete all logs for the piece
+    List<Log> logs = await logDatabase.deleteLogsForPiece(piece);
+    // Update WeekData
+    await weekDataDatabase.updateForMultipleLogDelete(logs);
   }
 }

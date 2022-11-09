@@ -63,7 +63,7 @@ class _AddPieceBottomSheetState extends State<AddPieceBottomSheet> {
         title: titleController.text,
         movements: movements);
 
-    await RepertoireDatabase(
+    RepertoireDatabase(
             repertoireCollection: authManager.userRepertoireCollection)
         .addPiece(piece);
     if (mounted) {
