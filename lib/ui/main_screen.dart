@@ -55,6 +55,8 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.add),
         onPressed: () {
+          // Uncomment to throw exception for Crashlytics
+          // throw Exception();
           Navigator.push(
               context,
               MaterialPageRoute(
