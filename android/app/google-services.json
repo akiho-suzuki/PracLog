@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "699614750464-1mtbfqi3teelmldulqu6dank0slt5lt3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.psycformusos.praclog",
+            "certificate_hash": "744d3e44eb95d0f3ff9bdfee7026579522a8c1da"
+          }
+        },
+        {
           "client_id": "699614750464-0ire9v02s0emef4okcornsfqvmkccedk.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,6 +37,13 @@
             {
               "client_id": "699614750464-0ire9v02s0emef4okcornsfqvmkccedk.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "699614750464-jd85iaulb8v2vug9ir4hkpndttcdudd7.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.psycformusos.praclog"
+              }
             }
           ]
         }

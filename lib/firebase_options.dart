@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '699614750464',
     projectId: 'praclog-6f18f',
     storageBucket: 'praclog-6f18f.appspot.com',
+    androidClientId: '699614750464-1mtbfqi3teelmldulqu6dank0slt5lt3.apps.googleusercontent.com',
     iosClientId: '699614750464-jd85iaulb8v2vug9ir4hkpndttcdudd7.apps.googleusercontent.com',
     iosBundleId: 'com.psycformusos.praclog',
   );
