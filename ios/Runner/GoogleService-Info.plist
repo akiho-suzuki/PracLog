@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p.apps.googleusercontent.com</string>
+	<string>699614750464-jd85iaulb8v2vug9ir4hkpndttcdudd7.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.60305170884-6bf8vir1kfigpeklk8sjc2o02vnocg7p</string>
+	<string>com.googleusercontent.apps.699614750464-jd85iaulb8v2vug9ir4hkpndttcdudd7</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>60305170884-18v1sub9urbgj772rj0h623qp71aqab6.apps.googleusercontent.com</string>
+	<string>699614750464-1mtbfqi3teelmldulqu6dank0slt5lt3.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyA200aIl6Bu1v3C2TBnuqJy58CaSN3n2OA</string>
+	<string>AIzaSyDGCo4nRlmfWgNSS9LeK-6rTgyl7vj5eos</string>
 	<key>GCM_SENDER_ID</key>
-	<string>60305170884</string>
+	<string>699614750464</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.psycformusos.praclog</string>
 	<key>PROJECT_ID</key>
-	<string>praclog-b31bd</string>
+	<string>praclog-6f18f</string>
 	<key>STORAGE_BUCKET</key>
-	<string>praclog-b31bd.appspot.com</string>
+	<string>praclog-6f18f.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:60305170884:ios:92748044a4efd474ff0491</string>
+	<string>1:699614750464:ios:c1fe0471bd1d81f51fb5e5</string>
 </dict>
 </plist>
