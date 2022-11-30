@@ -64,15 +64,11 @@ class AuthManager {
 
   /// Registers a new user with email and password. Returns error if there is one; otherwise returns `null`.
   Future registerWithEmailAndPassword(
-      {required String email,
-      required String password,
-      required String name}) async {
+      {required String email, required String password}) async {
     try {
       UserCredential result = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       if (result.user != null) {
-        // Set displayName to that inputted by user
-        await result.user!.updateDisplayName(name);
         await sendEmailVerification();
         return null;
       }
