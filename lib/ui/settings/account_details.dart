@@ -141,12 +141,6 @@ class _AccountDetailsScreenState extends State<AccountDetailsScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      _InfoText(
-                        text: authManager.currentUser.displayName!,
-                        label: 'Name',
-                        topMargin: false,
-                      ),
-                      const Divider(),
                       // Email address
                       _InfoText(
                           text: authManager.currentUser.email!, label: 'Email'),

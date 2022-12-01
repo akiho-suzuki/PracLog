@@ -32,7 +32,6 @@ class _RegisterLogInScreenState extends State<RegisterLogInScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _nameController = TextEditingController();
 
   String get titleText => widget.login ? 'Log in' : 'Register';
 
@@ -80,7 +79,6 @@ class _RegisterLogInScreenState extends State<RegisterLogInScreen> {
           result = await authManager.registerWithEmailAndPassword(
             email: email,
             password: _passwordController.text.trim(),
-            name: _nameController.text.trim(),
           );
         }
 
@@ -126,7 +124,6 @@ class _RegisterLogInScreenState extends State<RegisterLogInScreen> {
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _nameController.dispose();
     super.dispose();
   }
 
@@ -155,13 +152,6 @@ class _RegisterLogInScreenState extends State<RegisterLogInScreen> {
                                   fontWeight: FontWeight.bold,
                                   color: CustomColors.primaryColor)),
                         ),
-                        // Name field (only show for register)
-                        widget.login
-                            ? const SizedBox.shrink()
-                            : AuthTextField(
-                                controller: _nameController,
-                                errorMessage: blankNameErrorMsg,
-                                hintText: nameHint),
                         // Email field
                         AuthTextField(
                             controller: _emailController,
