@@ -3,6 +3,7 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
+import 'package:praclog_v2/services/data_import_export.dart';
 import 'package:praclog_v2/ui/main_screen.dart';
 import 'package:praclog_v2/ui/settings/widgets/action_tile.dart';
 import 'package:praclog_v2/ui/widgets/rounded_white_card.dart';
@@ -29,7 +30,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
     }
   }
 
-  Future _onPressExportData() async {}
+  Future _exportData() async {
+    bool response = await DataImportExport(isar: widget.isar).exportData();
+    if (response && mounted) {
+      showSnackBar(context, "Data shared successfully!");
+    }
+  }
 
   Future _onPressDeleteData() async {
     bool? response = await showConfirmPopup(context,
@@ -73,8 +79,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
               children: [
                 ActionTile(
                   icon: Icons.table_chart,
-                  text: 'Export my data as CSV',
-                  onPressed: () => _onPressExportData(),
+                  text: 'Export my data',
+                  onPressed: () => _exportData(),
                 ),
                 const Divider(),
                 ActionTile(
