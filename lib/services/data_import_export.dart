@@ -1,13 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
+import 'package:praclog_v2/helpers/datetime_helpers.dart';
 import 'package:share_plus/share_plus.dart';
-
-const String _pieces = "pieces";
-const String _logs = "logs";
 
 class DataImportExport {
   final Isar isar;
@@ -20,11 +19,27 @@ class DataImportExport {
     return "${directory.path}/pracLogData_${DateTime.now()}";
   }
 
-  /// Returns `true` if data shared succesfully; otherwise returns `false`
-  Future<bool> exportData() async {
+  /// Exports data as json file that can be shared.
+  ///
+  /// If `dateTimeRange` is `null`, it will export the entire dataset.
+  ///
+  /// Returns `true` if data shared succesfully; otherwise returns `false`.
+  Future<bool> exportData(DateTimeRange? dateTimeRange) async {
+    Query<Log> logQuery;
+    Query<Piece> pieceQuery;
+    pieceQuery = isar.pieces.where().build();
+
+    // For exporting all data
+    if (dateTimeRange == null) {
+      logQuery = isar.logs.where().sortByDateTime().build();
+    } else {
+      // For exporting data within dateTimeRange
+      DateTime startDate = dateTimeRange.start.setAtStartOfDay();
+      DateTime endDate = dateTimeRange.end.setAtEndOfDay();
+      logQuery = isar.logs.where().dateTimeBetween(startDate, endDate).build();
+    }
+
     // Get json data for pieces and logs
-    Query<Log> logQuery = isar.logs.where().sortByDateTime().build();
-    Query<Piece> pieceQuery = isar.pieces.where().build();
     List<Map<String, dynamic>> logJson = await logQuery.exportJson();
     List<Map<String, dynamic>> pieceJson = await pieceQuery.exportJson();
 
@@ -32,14 +47,14 @@ class DataImportExport {
     _CollectionMerger mergedData =
         _CollectionMerger(logData: logJson, pieceData: pieceJson);
     Map<String, dynamic> mergedJson = mergedData.toJson();
-    String logJsonString = jsonEncode(mergedJson);
+    String jsonString = jsonEncode(mergedJson);
 
     // Get the file where data will be written.
     String filePath = await _getFilePath();
     final file = File(filePath);
 
     // Write data
-    await file.writeAsString(logJsonString);
+    await file.writeAsString(jsonString);
 
     // Share it
     final result =
@@ -65,6 +80,9 @@ class DataImportExport {
 class _CollectionMerger {
   List<Map<String, dynamic>> pieceData;
   List<Map<String, dynamic>> logData;
+
+  static const String _pieces = "pieces";
+  static const String _logs = "logs";
 
   _CollectionMerger({required this.pieceData, required this.logData});
 

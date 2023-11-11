@@ -3,8 +3,8 @@ import 'package:isar/isar.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
-import 'package:praclog_v2/services/data_import_export.dart';
 import 'package:praclog_v2/ui/main_screen.dart';
+import 'package:praclog_v2/ui/settings/data_export_screen.dart';
 import 'package:praclog_v2/ui/settings/widgets/action_tile.dart';
 import 'package:praclog_v2/ui/widgets/rounded_white_card.dart';
 import 'package:praclog_v2/utils/show_popup.dart';
@@ -27,13 +27,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     bool result = await launchEmail(bugReport);
     if (!result && mounted) {
       showSnackBar(context, 'Error. Please try again later.');
-    }
-  }
-
-  Future _exportData() async {
-    bool response = await DataImportExport(isar: widget.isar).exportData();
-    if (response && mounted) {
-      showSnackBar(context, "Data shared successfully!");
     }
   }
 
@@ -78,10 +71,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
             child: Column(
               children: [
                 ActionTile(
-                  icon: Icons.table_chart,
-                  text: 'Export my data',
-                  onPressed: () => _exportData(),
-                ),
+                    icon: Icons.table_chart,
+                    text: 'Export my data',
+                    onPressed: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                DataExportScreen(isar: widget.isar)))),
                 const Divider(),
                 ActionTile(
                   icon: Icons.delete_forever,
