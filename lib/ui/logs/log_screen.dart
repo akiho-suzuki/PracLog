@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:isar/isar.dart';
@@ -18,18 +19,26 @@ class _LogScreenState extends State<LogScreen> {
 
   final PagingController<int, Log> _pagingController =
       PagingController(firstPageKey: 0);
+  late StreamSubscription streamSubscription;
 
   @override
   void initState() {
+    super.initState();
     _pagingController.addPageRequestListener((pageKey) {
       _fetchPage(pageKey);
     });
-    super.initState();
+    // Watch changes in logs and refresh the page if there are any changes
+    Stream<void> logChanges =
+        LogDatabase(isar: widget.isar).watchLogListChanges();
+    streamSubscription = logChanges.listen((_) {
+      _pagingController.refresh();
+    });
   }
 
   @override
   void dispose() {
     _pagingController.dispose();
+    streamSubscription.cancel();
     super.dispose();
   }
 
@@ -51,17 +60,22 @@ class _LogScreenState extends State<LogScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PagedListView(
-      pagingController: _pagingController,
-      builderDelegate: PagedChildBuilderDelegate<Log>(
-        itemBuilder: (context, item, index) {
-          return LogCard(
-              isar: widget.isar,
-              log: item,
-              onLongPress: () {},
-              multipleDeleteMode: false,
-              onTapInMultipleDelete: () {});
-        },
+    return RefreshIndicator(
+      onRefresh: () => Future.sync(
+        () => _pagingController.refresh(),
+      ),
+      child: PagedListView(
+        pagingController: _pagingController,
+        builderDelegate: PagedChildBuilderDelegate<Log>(
+          itemBuilder: (context, item, index) {
+            return LogCard(
+                isar: widget.isar,
+                log: item,
+                onLongPress: () {},
+                multipleDeleteMode: false,
+                onTapInMultipleDelete: () {});
+          },
+        ),
       ),
     );
   }

@@ -5,7 +5,6 @@ import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/helpers/datetime_helpers.dart';
 import 'package:praclog_v2/helpers/null_empty_helpers.dart';
 import 'package:praclog_v2/services/log_database.dart';
-import 'package:praclog_v2/ui/main_screen.dart';
 import 'package:praclog_v2/ui/practice/post_practice_screen.dart';
 import 'package:praclog_v2/ui/widgets/custom_scaffold.dart';
 import 'package:praclog_v2/ui/widgets/goal_card.dart';
@@ -112,14 +111,7 @@ class LogInfoScreen extends StatelessWidget {
             if (response) {
               // Goes back to home screen (log screen)
               if (context.mounted) {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => MainScreen(
-                              isar: isar,
-                              initialIndex: 2,
-                            )),
-                    ((route) => false));
+                Navigator.pop(context);
               }
             }
           },

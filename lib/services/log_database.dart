@@ -1,6 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
+import 'package:rxdart/rxdart.dart';
 
 class LogDatabase {
   final Isar isar;
@@ -64,8 +65,6 @@ class LogDatabase {
     await isar.writeTxn(() async => await isar.logs.delete(log.id));
   }
 
-  // Delete all logs associated with a piece (for when the piece is deleted)
-
   // Get logs between two dates
   Future<List<Log>> getLogsBetween(DateTime startDate, DateTime endDate) async {
     return await isar.logs
@@ -96,5 +95,15 @@ class LogDatabase {
     Query<Log> query =
         isar.logs.where(sort: Sort.asc).dateTimeBetween(start, end).build();
     yield* query.watch(fireImmediately: true);
+  }
+
+  /// Fires when there is a change in the logs or pieces.
+  /// (Pieces are watched separately and combined as the isar watcher does not detect changes in linked objects)
+  Stream<void> watchLogListChanges() async* {
+    Query logQuery = isar.logs.where().completedEqualTo(true).build();
+    Stream<void> logChangeWatcher = logQuery.watchLazy();
+    final Stream<void> piecesChangeWatcher = isar.pieces.watchLazy();
+    yield* CombineLatestStream(
+        [logChangeWatcher, piecesChangeWatcher], ((_) {}));
   }
 }

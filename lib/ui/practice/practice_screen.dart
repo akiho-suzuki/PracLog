@@ -6,7 +6,6 @@ import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/helpers/practice_goal_manager.dart';
 import 'package:praclog_v2/helpers/timer_data_manager.dart';
 import 'package:praclog_v2/services/log_database.dart';
-import 'package:praclog_v2/ui/main_screen.dart';
 import 'package:praclog_v2/ui/practice/post_practice_screen.dart';
 import 'package:praclog_v2/ui/practice/widgets/practice_goal_form.dart';
 import 'package:praclog_v2/ui/practice/widgets/timer.dart';
@@ -101,11 +100,7 @@ class _PracticeScreenState extends State<PracticeScreen>
       context.read<TimerDataManager>().clearTimer();
 
       // Goes back to home screen
-      Navigator.pushAndRemoveUntil(
-          context,
-          MaterialPageRoute(
-              builder: (context) => MainScreen(isar: widget.isar)),
-          ((route) => false));
+      Navigator.popUntil(context, (route) => route.isFirst);
     }
   }
 
