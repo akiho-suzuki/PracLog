@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
+import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/helpers/datetime_helpers.dart';
 import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/ui/logs/widgets/log_card.dart';
@@ -58,7 +59,30 @@ class _LogScreenState extends State<LogScreen> {
               itemBuilder: (context, index) {
                 Log log = logs[index];
                 String dateCategory = log.dateTime.getDateCategory();
-                return _buildLogCard(log);
+
+                // For logs with date label
+                if (index == 0 ||
+                    logs[index - 1].dateTime.getDateCategory() !=
+                        dateCategory) {
+                  return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                            padding: const EdgeInsets.only(top: 5.0),
+                            child: Text(dateCategory)),
+                        _buildLogCard(log)
+                      ]);
+                  // Add space below if it's the last one
+                } else if (index == logs.length - 1) {
+                  return Column(
+                    children: [
+                      _buildLogCard(log),
+                      kPageBottomSpace,
+                    ],
+                  );
+                } else {
+                  return _buildLogCard(log);
+                }
               },
             );
           }
