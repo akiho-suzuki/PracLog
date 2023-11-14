@@ -1,7 +1,6 @@
 import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
-import 'package:rxdart/rxdart.dart';
 
 class LogDatabase {
   final Isar isar;
@@ -73,21 +72,11 @@ class LogDatabase {
         .findAll();
   }
 
-  // Get logs in batches
-  Future<List<Log>> getLogsInBatches(int offset, int limit) async {
-    List<Log> logs = await isar.logs
-        .where()
-        .completedEqualTo(true)
-        .sortByDateTimeDesc()
-        .offset(offset)
-        .limit(limit)
-        .findAll();
-
-    // Load the piece info
-    for (Log log in logs) {
-      await log.piece.load();
-    }
-    return logs;
+  /// Returns a stream of all logs (that are completed)
+  Stream<List<Log>> getLogStream() async* {
+    Query<Log> query =
+        isar.logs.where().completedEqualTo(true).sortByDateTimeDesc().build();
+    yield* query.watch(fireImmediately: true);
   }
 
   /// Returns a stream of logs between `start` and `end` DateTimes.
@@ -95,15 +84,5 @@ class LogDatabase {
     Query<Log> query =
         isar.logs.where(sort: Sort.asc).dateTimeBetween(start, end).build();
     yield* query.watch(fireImmediately: true);
-  }
-
-  /// Fires when there is a change in the logs or pieces.
-  /// (Pieces are watched separately and combined as the isar watcher does not detect changes in linked objects)
-  Stream<void> watchLogListChanges() async* {
-    Query logQuery = isar.logs.where().completedEqualTo(true).build();
-    Stream<void> logChangeWatcher = logQuery.watchLazy();
-    final Stream<void> piecesChangeWatcher = isar.pieces.watchLazy();
-    yield* CombineLatestStream(
-        [logChangeWatcher, piecesChangeWatcher], ((_) {}));
   }
 }
