@@ -1,16 +1,18 @@
-# praclog_v2
+# PracLog
 
-A new Flutter project.
+PracLog is a free, open-source app designed to track musicians' practice sessions by [Akiho Suzuki](https://akihosuzuki.com).
 
-## Getting Started
+If you have any questions or would like to contribute, please email me at [prac.log.app@gmail.com](mailto:prac.log.app@gmail.com).
 
-This project is a starting point for a Flutter application.
+### For musicians
+PracLog is a practice diary app. It allows musicians to plan and monitor their practice by setting goals, tracking how long they practise for, and rating practice sessions. The app provides weekly and monthly summaries of practice sessions through stats and graphs.
 
-A few resources to get you started if this is your first Flutter project:
+### For researchers
+PracLog was originally developed for a research project looking at how conservatoire piano students practise. It is therefore designed with researchers' needs in mind.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+The content of the app is loosely based on the three-phase cyclical model of self-regulated learning (SRL; [Zimmerman, 2000](https://doi.org/10.1016/B978-012109890-2/50031-7)). Users input data in three separate screens corresponding to the three phases of SRL: forethought (before the practice session), performance (during the practice session), and self-reflection (after the practice session).
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The app allows the user to export data for specified dates, making it easy to access and analyse data. The data is exported as a json file. I am planning to write and publish an accompanying python script that transforms the json files into tidy dataframes that can easily be imported to softwares like RStudio and SPSS for analysis.
+
+### For developers
+PracLog was created using [Flutter](https://flutter.dev/), a cross-platform app development framework written in Dart. The app uses [Isar](https://isar.dev/) as the backend. All data is stored locally on the device.
