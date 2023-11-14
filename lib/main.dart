@@ -5,8 +5,9 @@ import 'package:path_provider/path_provider.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
 import 'package:praclog_v2/constants.dart';
-import 'package:praclog_v2/helpers/practice_goal_manager.dart';
-import 'package:praclog_v2/helpers/timer_data_manager.dart';
+import 'package:praclog_v2/data_managers/logs_delete_manager.dart';
+import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
+import 'package:praclog_v2/data_managers/timer_data_manager.dart';
 import 'package:praclog_v2/ui/main_screen.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +41,8 @@ class MyApp extends StatelessWidget {
         ),
         // To keep track of timer data temporarily during practice sessions
         ChangeNotifierProvider(create: (context) => TimerDataManager()),
+        // For deleting multiple logs
+        ChangeNotifierProvider(create: (context) => LogsDeleteManager()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: true,

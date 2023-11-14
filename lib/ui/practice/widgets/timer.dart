@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:praclog_v2/constants.dart';
-import 'package:praclog_v2/helpers/timer_data_manager.dart';
+import 'package:praclog_v2/data_managers/timer_data_manager.dart';
 import 'package:provider/provider.dart';
 import 'package:stop_watch_timer/stop_watch_timer.dart';
 

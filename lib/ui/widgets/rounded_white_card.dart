@@ -16,6 +16,7 @@ class RoundedWhiteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: color,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15.0),
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/constants.dart';
-import 'package:praclog_v2/helpers/practice_goal_manager.dart';
+import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
 import 'package:praclog_v2/ui/practice/widgets/goal_listview.dart';
 import 'package:praclog_v2/ui/widgets/goal_card.dart';
 import 'package:praclog_v2/ui/widgets/rounded_white_card.dart';

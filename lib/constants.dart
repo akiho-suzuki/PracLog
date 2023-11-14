@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 // Colors ------------------------------------------
 const Color kBackgroundColor = Color(0xFFE8E8E8);
 const Color kPrimaryColor = Colors.blue;
+Color kPrimaryColorLight = Colors.blue[200]!;
 const Color kMainTextColor = Colors.black;
 const Color kLightTextColor = Colors.grey;
 

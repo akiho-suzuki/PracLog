@@ -64,6 +64,15 @@ class LogDatabase {
     await isar.writeTxn(() async => await isar.logs.delete(log.id));
   }
 
+  // Delete multiple logs
+  Future deleteMultipleLogs(List<int> logIds) async {
+    await isar.writeTxn(() async {
+      for (int logId in logIds) {
+        await isar.logs.delete(logId);
+      }
+    });
+  }
+
   // Get logs between two dates
   Future<List<Log>> getLogsBetween(DateTime startDate, DateTime endDate) async {
     return await isar.logs

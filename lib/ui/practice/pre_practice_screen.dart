@@ -4,7 +4,7 @@ import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
 import 'package:praclog_v2/constants.dart';
-import 'package:praclog_v2/helpers/practice_goal_manager.dart';
+import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
 import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/services/pieces_database.dart';
 import 'package:praclog_v2/ui/practice/practice_screen.dart';

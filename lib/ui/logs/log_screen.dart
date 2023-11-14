@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
+import 'package:praclog_v2/helpers/datetime_helpers.dart';
 import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/ui/logs/widgets/log_card.dart';
 import 'package:praclog_v2/ui/practice/pre_practice_screen.dart';
@@ -15,6 +16,7 @@ class LogScreen extends StatefulWidget {
 }
 
 class _LogScreenState extends State<LogScreen> {
+  // The widget to display if there are any logs
   Widget _buildEmptyLogWidget(context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -34,6 +36,13 @@ class _LogScreenState extends State<LogScreen> {
     );
   }
 
+  LogCard _buildLogCard(Log log) {
+    return LogCard(
+      isar: widget.isar,
+      log: log,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
@@ -46,13 +55,11 @@ class _LogScreenState extends State<LogScreen> {
           } else {
             return ListView.builder(
               itemCount: logs.length,
-              itemBuilder: (context, index) => LogCard(
-                isar: widget.isar,
-                log: logs[index],
-                onLongPress: () {},
-                multipleDeleteMode: false,
-                onTapInMultipleDelete: () {},
-              ),
+              itemBuilder: (context, index) {
+                Log log = logs[index];
+                String dateCategory = log.dateTime.getDateCategory();
+                return _buildLogCard(log);
+              },
             );
           }
         } else {
