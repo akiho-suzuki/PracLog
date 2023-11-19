@@ -4,6 +4,7 @@ import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
 import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
 import 'package:praclog_v2/data_managers/timer_data_manager.dart';
+import 'package:praclog_v2/main.dart';
 import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/ui/practice/widgets/duration_edit_popup.dart';
 import 'package:praclog_v2/ui/practice/widgets/goal_listview.dart';
@@ -110,7 +111,11 @@ class _PostPracticeScreenState extends State<PostPracticeScreen> {
 
     // Goes back to home screen
     if (mounted) {
-      Navigator.popUntil(context, (route) => route.isFirst);
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MainScreenWrapper(isar: widget.isar)),
+          (route) => false);
     }
   }
 

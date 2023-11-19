@@ -8,7 +8,10 @@ import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/data_managers/logs_delete_manager.dart';
 import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
 import 'package:praclog_v2/data_managers/timer_data_manager.dart';
+import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/ui/main_screen.dart';
+import 'package:praclog_v2/ui/practice/practice_screen.dart';
+import 'package:praclog_v2/ui/widgets/loading_widget.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
@@ -50,8 +53,41 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             scaffoldBackgroundColor: kBackgroundColor),
-        home: MainScreen(isar: isar),
+        home: MainScreenWrapper(isar: isar),
       ),
+    );
+  }
+}
+
+class MainScreenWrapper extends StatefulWidget {
+  final Isar isar;
+  const MainScreenWrapper({super.key, required this.isar});
+
+  @override
+  State<MainScreenWrapper> createState() => _MainScreenWrapperState();
+}
+
+class _MainScreenWrapperState extends State<MainScreenWrapper> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: LogDatabase(isar: widget.isar).findIncompleteLog(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const LoadingWidget();
+        } else if (snapshot.hasData) {
+          // Practice session in progress
+          return PracticeScreen(
+            isar: widget.isar,
+            piece: snapshot.data!.piece.value!,
+            log: snapshot.data!,
+            restored: true,
+          );
+        } else {
+          // Go to MainScreen
+          return MainScreen(isar: widget.isar);
+        }
+      },
     );
   }
 }

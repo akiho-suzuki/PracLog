@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/constants.dart';
@@ -29,6 +30,16 @@ class PracticeGoalForm extends StatefulWidget {
   /// Set to `true` for `PracticeScreen` to allow for scrolling, while keeping the timer widget at the bottom of the screen.
   final bool showAsListView;
 
+  /// Pass when using in `PracticeScreen` to save any updates to the goal list immediately to Isar db.
+  ///
+  /// This is to make sure that the practice session can be restored if the app gets killed during a practice session.
+  ///
+  /// A temporary workaround for Isar bug which means that I can't monitor the state of the app
+  /// using lifecycle
+  ///
+  /// TODO remove when Isar Issue #1068 gets resolved
+  final AsyncCallback? saveDataToIsarFunc;
+
   const PracticeGoalForm({
     required this.onTextFieldChange,
     required this.controller,
@@ -36,6 +47,7 @@ class PracticeGoalForm extends StatefulWidget {
     required this.goalTickEnabled,
     this.onGoalAdd,
     this.showAsListView = false,
+    this.saveDataToIsarFunc,
     Key? key,
   }) : super(key: key);
 
@@ -69,6 +81,7 @@ class _PracticeGoalFormState extends State<PracticeGoalForm> {
                     ..text = value
                     ..isTicked = false;
                   practiceGoalManager.add(goal);
+                  widget.saveDataToIsarFunc?.call();
                   if (widget.onGoalAdd != null) {
                     widget.onGoalAdd!();
                   }
@@ -99,6 +112,7 @@ class _PracticeGoalFormState extends State<PracticeGoalForm> {
             GoalListView(
               practiceGoalManager: practiceGoalManager,
               tickEnabled: widget.goalTickEnabled,
+              saveDataToIsarFunc: widget.saveDataToIsarFunc,
             ),
             // Textfield (or blank space)
             _showTextField

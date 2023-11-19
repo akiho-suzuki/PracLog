@@ -94,4 +94,27 @@ class LogDatabase {
         isar.logs.where(sort: Sort.asc).dateTimeBetween(start, end).build();
     yield* query.watch(fireImmediately: true);
   }
+
+  /// Finds incomplete logs
+  Future<Log?> findIncompleteLog() async {
+    Log? log = await isar.logs
+        .where(sort: Sort.desc)
+        .completedEqualTo(false)
+        .findFirst();
+    await log?.piece.load();
+    return log;
+  }
+
+  /// Deletes all incomplete logs (should only ever be one)
+  Future deleteIncompleteLog() async {
+    List<Log> incompleteLogs = await isar.logs
+        .where(sort: Sort.desc)
+        .completedEqualTo(false)
+        .findAll();
+    if (incompleteLogs.isNotEmpty) {
+      for (Log log in incompleteLogs) {
+        await isar.logs.delete(log.id);
+      }
+    }
+  }
 }

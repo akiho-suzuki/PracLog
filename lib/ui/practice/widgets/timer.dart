@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/data_managers/timer_data_manager.dart';
@@ -12,9 +13,14 @@ const TextStyle _timerDisplay = TextStyle(
 
 class Timer extends StatefulWidget {
   final bool restored;
+  // TODO remove when Isar Issue #1068 gets resolved
+  final AsyncCallback onPressSaveData;
+
+  /// If `restored` is `true`, you must provide `currentSec` and `currentlyOn`
   const Timer({
     Key? key,
-    this.restored = false,
+    required this.restored,
+    required this.onPressSaveData,
   }) : super(key: key);
 
   @override
@@ -74,6 +80,7 @@ class _TimerState extends State<Timer> {
               timerDataManager.startTimer(DateTime.now());
               _stopwatch.onStartTimer();
             }
+            await widget.onPressSaveData();
           },
         ),
       ],

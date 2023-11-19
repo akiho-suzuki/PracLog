@@ -5,6 +5,12 @@ class TimerDataManager extends ChangeNotifier {
   final List<TimerData> _timerDataList = [];
   List<TimerData> get timerDataList => _timerDataList;
 
+  set setTimerDataList(List<TimerData> timerDataList) {
+    for (TimerData timerData in timerDataList) {
+      _timerDataList.add(timerData);
+    }
+  }
+
   // Start timer
   void startTimer(DateTime startTime) {
     TimerData timerData = TimerData()..startTime = startTime;

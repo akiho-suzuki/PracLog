@@ -5,6 +5,7 @@ import 'package:praclog_v2/collections/piece.dart';
 import 'package:praclog_v2/constants.dart';
 import 'package:praclog_v2/data_managers/practice_goal_manager.dart';
 import 'package:praclog_v2/data_managers/timer_data_manager.dart';
+import 'package:praclog_v2/main.dart';
 import 'package:praclog_v2/services/log_database.dart';
 import 'package:praclog_v2/ui/practice/post_practice_screen.dart';
 import 'package:praclog_v2/ui/practice/widgets/practice_goal_form.dart';
@@ -33,32 +34,35 @@ class PracticeScreen extends StatefulWidget {
   State<PracticeScreen> createState() => _PracticeScreenState();
 }
 
-class _PracticeScreenState extends State<PracticeScreen>
-    with WidgetsBindingObserver {
+// TODO once Isar issue #1068 gets resolved, consider going back to `WidgetsBindingObserver` and using `didChangeAppLifecycleState` to save data to Isar db when app goes to sleep
+class _PracticeScreenState extends State<PracticeScreen> {
   late final TextEditingController _controller;
 
   @override
   void initState() {
-    // The `WidgetBindingObserver` is to get notified when the user leaves the app
-    // so that `PracticeGoal` and `TimerData` can be stored locally
-    WidgetsBinding.instance.addObserver(this);
     _controller = TextEditingController();
-    super.initState();
-  }
-
-  // When user exits from the app (switches to another screen), save goal and timerdata
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) async {
-    if (state == AppLifecycleState.paused) {
-      await savePracticeData();
+    if (widget.restored) {
+      restorePractice();
     }
+    super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     _controller.dispose();
     super.dispose();
+  }
+
+  // If this is continuing a previous practice session, get all the data
+  // (i.e. goals and timerData)
+  Future restorePractice() async {
+    // Set the timer data
+    TimerDataManager timerDataManager = context.read<TimerDataManager>();
+    timerDataManager.setTimerDataList = widget.log.timerDataList;
+    // Set the goal data
+    PracticeGoalManager goalManager = context.read<PracticeGoalManager>();
+    goalManager.setGoalList =
+        widget.log.goalsList == null ? [] : widget.log.goalsList!;
   }
 
   // Updates the goal list and timer data with the most recent data
@@ -69,11 +73,9 @@ class _PracticeScreenState extends State<PracticeScreen>
         goalManager.goalList, timerDataManager.timerDataList, isFinished);
   }
 
-  void _onSubmit() {
+  void _onSubmit() async {
     savePracticeData(isFinished: true);
-
-    // TODO Handle if user comes back here
-    Navigator.push(
+    await Navigator.push(
         context,
         MaterialPageRoute(
             builder: (context) => PostPracticeScreen(
@@ -81,6 +83,16 @@ class _PracticeScreenState extends State<PracticeScreen>
                 log: widget.log,
                 piece: widget.piece,
                 duration: context.read<TimerDataManager>().timerMinValue())));
+    // If user comes back to this page through the back button, reset the `inProgress` to `true`
+    savePracticeData();
+  }
+
+  Timer _buildTimer() {
+    if (widget.restored) {
+      return Timer(restored: true, onPressSaveData: savePracticeData);
+    } else {
+      return Timer(restored: false, onPressSaveData: savePracticeData);
+    }
   }
 
   void _cancelPractice() async {
@@ -92,15 +104,19 @@ class _PracticeScreenState extends State<PracticeScreen>
     if (response == true && mounted) {
       // Clear practice goals
       context.read<PracticeGoalManager>().deleteAll();
-
-      // Delete the log data
-      LogDatabase(isar: widget.isar).deleteLog(widget.log);
-
       // Clear timer data
       context.read<TimerDataManager>().clearTimer();
+      // Delete the log data
+      await LogDatabase(isar: widget.isar).deleteLog(widget.log);
 
-      // Goes back to home screen
-      Navigator.popUntil(context, (route) => route.isFirst);
+      if (mounted) {
+        // Goes back to home screen
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MainScreenWrapper(isar: widget.isar)),
+            (route) => false);
+      }
     }
   }
 
@@ -144,14 +160,13 @@ class _PracticeScreenState extends State<PracticeScreen>
                 initialShowTextField: false,
                 goalTickEnabled: true,
                 showAsListView: true,
+                saveDataToIsarFunc: savePracticeData,
               ),
             ),
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Timer(
-                  restored: widget.restored,
-                ),
+                _buildTimer(),
                 MainButton(
                     text: 'Finish',
                     onPressed: timerDataManager.timerOn() ? null : _onSubmit),
