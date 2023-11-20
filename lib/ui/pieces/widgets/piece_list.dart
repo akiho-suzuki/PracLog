@@ -33,7 +33,7 @@ class _PieceListState extends State<PieceList> {
   }
 
   // The dropdown menu on the top that allows users to sort list
-  // see past repertoire and TODO delete all pieces
+  // see past repertoire
   PopupMenuButton _buildMoreButton(bool current) {
     List<PopupMenuEntry> entries = [
       const PopupMenuItem(child: Text('Sort by:')),
@@ -47,10 +47,6 @@ class _PieceListState extends State<PieceList> {
             style: _sortByOptionTextStyle(PiecesSortBy.composer)),
       ),
       const PopupMenuDivider(),
-      // const PopupMenuItem(
-      //   value: RepertoireScreenMoreOptions.deleteAll,
-      //   child: Text('Delete all pieces'),
-      // ),
     ];
 
     if (current) {

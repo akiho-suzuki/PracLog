@@ -130,7 +130,6 @@ class _GraphScreenState extends State<GraphScreen> {
         _buildTypeMenuButton(),
       ],
       body: FutureBuilder<List<Log>>(
-        // TODO the start and end dates?
         future: LogDatabase(isar: widget.isar)
             .getLogsBetween(_showFromDate.getNWeekBefore(4), _showFromDate),
         builder: (context, snapshot) {

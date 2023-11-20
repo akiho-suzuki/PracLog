@@ -166,7 +166,8 @@ class _PieceInfoScreenState extends State<PieceInfoScreen> {
   }
 }
 
-// TODO: It would be nice to have the expansion tile collapse automatically when user selects something. This is not supported in the flutter `ExpansionTile` right now so you would need to create/tweak own widget. Maybe in the future.
+// TODO: It would be nice to have the expansion tile collapse automatically when user selects something.
+// This is not supported in the flutter `ExpansionTile` right now so you would need to create/tweak own widget. Maybe in the future.
 class PieceInfoCard extends StatefulWidget {
   final Piece piece;
   final Function(int)? onTapMovement;

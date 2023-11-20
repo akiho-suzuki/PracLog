@@ -50,7 +50,6 @@ Future<bool> launchEmail(bool bugReport) async {
   try {
     return await launchUrl(Uri.parse(url));
   } catch (e) {
-    print(e);
     return false;
   }
 }

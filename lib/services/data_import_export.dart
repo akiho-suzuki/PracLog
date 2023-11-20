@@ -63,18 +63,18 @@ class DataImportExport {
   }
 
   // TODO: implement in app (currently not used or tested)
-  Future importData(String json) async {
-    Map<String, dynamic> jsonMap = jsonDecode(json) as Map<String, dynamic>;
-    _CollectionMerger collectionMerger = _CollectionMerger.fromJson(jsonMap);
-    await isar.writeTxn(() async {
-      // Clear the database
-      await isar.logs.clear();
-      await isar.pieces.clear();
-      // Import data
-      await isar.logs.importJson(collectionMerger.logData);
-      await isar.logs.importJson(collectionMerger.pieceData);
-    });
-  }
+  // Future importData(String json) async {
+  //   Map<String, dynamic> jsonMap = jsonDecode(json) as Map<String, dynamic>;
+  //   _CollectionMerger collectionMerger = _CollectionMerger.fromJson(jsonMap);
+  //   await isar.writeTxn(() async {
+  //     // Clear the database
+  //     await isar.logs.clear();
+  //     await isar.pieces.clear();
+  //     // Import data
+  //     await isar.logs.importJson(collectionMerger.logData);
+  //     await isar.logs.importJson(collectionMerger.pieceData);
+  //   });
+  // }
 }
 
 class _CollectionMerger {

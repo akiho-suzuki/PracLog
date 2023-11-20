@@ -63,7 +63,7 @@ class _PostPracticeScreenState extends State<PostPracticeScreen> {
       _satisfaction = widget.log.satisfaction;
       _progress = widget.log.progress;
       _focus = widget.log.focus;
-      _duration = widget.log.durationInMin ?? 0; //TODO check
+      _duration = widget.log.durationInMin ?? 0;
       _notesController = TextEditingController(text: widget.log.notes);
     } else {
       // For new logs (post practice)

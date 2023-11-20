@@ -1,6 +1,7 @@
 import 'package:isar/isar.dart';
 import 'package:praclog_v2/collections/log.dart';
 import 'package:praclog_v2/collections/piece.dart';
+import 'package:praclog_v2/database_exception.dart';
 
 class LogDatabase {
   final Isar isar;
@@ -32,8 +33,8 @@ class LogDatabase {
     });
 
     if (savedLog == null) {
-      // TODO write message
-      throw Error();
+      throw DatabaseException(
+          "Failed to save Log at startPractice. The savedLog returned null.");
     } else {
       return savedLog!;
     }
