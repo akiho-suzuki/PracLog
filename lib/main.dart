@@ -74,7 +74,7 @@ class _MainScreenWrapperState extends State<MainScreenWrapper> {
       future: LogDatabase(isar: widget.isar).findIncompleteLog(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const LoadingWidget();
+          return const Scaffold(body: LoadingWidget());
         } else if (snapshot.hasData) {
           // Practice session in progress
           return PracticeScreen(
