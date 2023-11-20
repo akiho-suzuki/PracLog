@@ -20,7 +20,7 @@ void main() async {
   final isar = await Isar.open([
     PieceSchema,
     LogSchema,
-  ], directory: dir.path, inspector: true);
+  ], directory: dir.path);
   runApp(MyApp(isar: isar));
 }
 
@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => LogsDeleteManager()),
       ],
       child: MaterialApp(
-        debugShowCheckedModeBanner: true,
+        debugShowCheckedModeBanner: false,
         title: 'PracLog',
         theme: ThemeData(
             primarySwatch: Colors.blue,
