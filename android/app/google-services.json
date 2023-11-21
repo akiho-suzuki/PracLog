@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "371792583750",
+    "project_id": "praclog-41739",
+    "storage_bucket": "praclog-41739.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:371792583750:android:1fd899661ea4abb97d7e47",
+        "android_client_info": {
+          "package_name": "com.psycformusos.praclog"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjts-lm44nmv7fmO2TseNvBh9UJZUOSxA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

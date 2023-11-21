@@ -48,6 +48,8 @@ dependencies:
   url_launcher: ^6.2.1
   device_info_plus: ^9.1.0
   share_plus: ^7.2.1
+  firebase_core: ^2.23.0
+  firebase_crashlytics: ^3.4.5
 
 dev_dependencies:
   flutter_test:
