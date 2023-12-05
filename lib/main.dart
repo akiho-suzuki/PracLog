@@ -68,11 +68,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             scaffoldBackgroundColor: kBackgroundColor),
-        home: TextButton(
-          onPressed: () => throw Exception(),
-          child: const Text("Throw Test Exception"),
-        ),
-        //MainScreenWrapper(isar: isar),
+        home: MainScreenWrapper(isar: isar),
       ),
     );
   }
