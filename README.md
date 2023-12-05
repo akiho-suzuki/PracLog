@@ -16,3 +16,6 @@ The app allows the user to export data for specified dates, making it easy to ac
 
 ### For developers
 PracLog was created using [Flutter](https://flutter.dev/), a cross-platform app development framework written in Dart. The app uses [Isar](https://isar.dev/) as the backend. All data is stored locally on the device.
+
+## Future features
+- [ ] Import data function: this would allow users to export data to back it up then restore it (e.g. when user gets a new phone)
