@@ -1,5 +1,7 @@
 # PracLog
 
+[Download on the App Store](https://apps.apple.com/fi/app/praclog/id6444419872) | [Download on Google Play](https://play.google.com/store/apps/details?id=com.psycformusos.praclog&hl=en)
+
 PracLog is a free, open-source app designed to track musicians' practice sessions by [Akiho Suzuki](https://akihosuzuki.com).
 
 If you have any questions or would like to contribute, please email me at [prac.log.app@gmail.com](mailto:prac.log.app@gmail.com).
