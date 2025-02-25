@@ -146,7 +146,7 @@ class _BarGraphCardState extends State<BarGraphCard> {
   Widget build(BuildContext context) {
     return GraphCardTemplate(
       child: widget.landscapeMode
-          ? Flexible(child: _buildChart())
+          ? _buildChart()
           : AspectRatio(
               aspectRatio: 1.6,
               child: _buildChart(),
